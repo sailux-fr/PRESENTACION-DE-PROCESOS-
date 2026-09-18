@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <header>
+        <h1>Administración de Procesos y Procesador</h1>
+        <p>Sistemas Operativos | Grupo S5B</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Presentado por:</h2>
+            <ul>
+
+            <li>Méndez Hernández Daron Alexander</li>
+            <li>Mercado Reyes Renata</li>
+            <li>Lomas Sanchez Jonathan David</li>
+            <li>Simón Cruz Victor Uriel</li>
+            <li>Rojas Grajeda Giovanni Antonio</li>
+            <li>Cabrera Crispin Gabriel</li>
+
+            </ul>
+        </section>
+
+        <section>
+            <h2>¿Qué es un proceso?</h2>
+            <p>
+                Un proceso es un programa que se encuentra actualmente en 
+                ejecución dentro del sistema operativo, pasando de ser un 
+                archivo estático a una entidad dinámica y activa.
+
+                Representa la unidad fundamental de trabajo en un sistema operativo moderno, siendo la abstracción principal sobre la que el SO gestiona la ejecución de tareas.
+
+                Es una entidad activa que posee recursos asignados por el sistema operativo, incluyendo tiempo de CPU, memoria, archivos abiertos y dispositivos de E/S.
+            </p>
+        </section>
+
+        <section>
+            <h2>Programa vs Proceso</h2>
+            <p>
+                Un PROGRAMA es un archivo pasivo almacenado en disco. Es simplemente un conjunto de instrucciones escrito en código que permanece estático hasta que es invocado para ejecutarse.
+            </p>
+            <ul>
+                <li>ARCHIVO EN DISCO</li>
+                <p>No consume CPU ni memoria de forma activa</p>
+                <li>ENTIDAD PASIVA</li>
+                <p>Permanece inalterado hasta su ejecución.</p>
+                <li>CÓDIGO ESTÁTICO</li>
+                <p>Conjunto fijo de instrucciones compiladas.</p>
+            </ul>
+             <p>
+               Un PROCESO es una entidad activa que reside en memoria y compite por el uso del procesador (CPU). Tiene un estado dinámico que cambia conforme avanza su ciclo de vida.
+            </p>
+            <ul>
+                <li>RESIDE EN MEMORIA</li>
+                <p>Ocupa espacio en RAM durante su ejecución.</p>
+                <li>COMPITE POR CPU</li>
+                <p>El sistema operativo arbitra el acceso al procesador.</p>
+                <li>ENTIDAD DINÁMICA</li>
+                <p>Cambia de estado a lo largo de su ciclo de vida.</p>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Ciclo de Vida del Proceso</h2>
+
+            <p>Los procesos transitan entre estados bien definidos durante su existencia en el sistema operativo. Cada transición está controlada por eventos del sistema o decisiones del planificador.</p>
+
+            <img src="vida.jpeg" alt="Ciclo de vida de un Procesador">
+        </section>
+
+        <section>
+            <h2>Bloque de Control de Proceso</h2>
+
+            <p>
+                El PCB identifica y describe a cada proceso dentro
+                del sistema operativo.
+            </p>
+
+            <ul>
+                <li>PID</li>
+                <p> (Process ID): número único que el SO asigna a cada proceso para identificarlo de forma inequívoca en el sistema</p>
+                <li>ESTADO Y REGISTROS</li>
+                <p> Estado actual del proceso (New, Ready, Running, Waiting, Terminated) y el valor de los registros del CPU para restaurar el contexto al retomar ejecución.</p>
+                <li>PRIORIDAD Y MEMORIA</li>
+                <p>Prioridades de planificación y los límites de memoria asignada: direcciones base y límite del espacio de direcciones del proceso</p>
+            </ul>
+                <p>El PCB permite al SO guardar y restaurar el contexto completo
+                durante un cambio de contexto.</p>
+                <p>Sin el PCB, el sistema operativo no podría gestionar la multitarea ni retomar procesos interrumpidos de forma correcta.</p>
+        </section>
+
+        <section>
+            <h2>Planificación del Procesador</h2>
+
+            <p>
+                Administra el tiempo de CPU entre los procesos
+                que compiten por su uso.
+            </p>
+             <p>OBJETIVOS:</p>
+             <ul>
+                <li>MAXIMIZAR EL RENDIMIENTO</li>
+                <p>Mantener el procesador ocupado la mayor parte del tiempo posible para maximizar el rendimiento del sistema.</p>
+                <li>EQUIDAD Y JUSTICIA</li>
+                <p>Garantizar que cada proceso reciba una porción justa del tiempo de CPU y evitar la inanición (starvation) de procesos de baja prioridad.</p>
+                <li>MINIMIZAR TIEMPOS DE RESPUESTA</li>
+                <p>Reducir el tiempo de espera y de respuesta para mejorar la experiencia del usuario y la eficiencia del sistema operativo.</p>
+             </ul>
+            <h3>NIVELES DE PLANIFICACIÓN</h3>
+
+            <ul>
+                <li>LARGO PLAZO</li>
+                <p>Controla la admisión de procesos al sistema</p>
+                <p>Decide qué procesos del conjunto de trabajos pasan a la memoria principal para ser ejecutados</p>
+                <p>También regula el grado de multiprogramación</p>
+                <li>MEDIANO PLAZO</li>
+                <p>Se encarga del intercambio de procesos entre la memoria principal y el disco</p>
+                <p>Puede extraer procesos de la memoria para liberar recursos y volver a introducirlos cuando sea conveniente.</p>
+                <li>CORTO PLAZO</li>
+                <p>Es el planificador que trabaja con mayor frecuencia</p>
+                <p>Selecciona el siguiente proceso de la cola de listos para asignarle la CPU</p>
+            </ul>
+        </section>
+
+        <section>
+            <h2>ALGORITMOS DE PLANIFICACIÓN DE CPU</h2>
+            <p>ALGORITMOS NO APROPIATIVOS: </p>
+            <ul>
+                <li>FCFS — First-Come, First-Served</li>
+                <p>
+                    Los procesos son atendidos en el orden en que llegan, son s sencillo de implementar; generando un efecto convoy cuando un proceso largo bloquea a los demás.
+                </p>
+                <li>SJF — Shortest Job First</li>
+                <p>Primero se ejecuta el proceso que tiene el menor tiempo de ráfaga de CPU, minimizando el tiempo promedio de espera, teniendo conocimiento previo de cada duracion de cada proceso</p>
+            </ul>
+            <p>ALGORITMOS APROPIATIVOS: </p>
+            <ul>
+                <li>Round Robin</li>
+                <P>Asigna a cada proceso un Quantum, es decir, una unidad de tiempo fija de CPU, de manera cíclica; garantizando equidad para sistemas de tiempo compartido</P>
+                <li>Planificación por Prioridades</li>
+                <p>Cada proceso tiene una prioridad asignada y la CPU se otorga al proceso con mayor prioridad; puede ser apropiativa o no apropiativa, dependiendo de la implementación.</p>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Dinámica Técnica: Simulación</h2>
+            <ul>
+                <li>Dispatcher en acción</li>
+                <p>Se muestra el funcionamiento del componente del sistema operativo que realiza el cambio de contexto efectivo entre los procesos seleccionados por el planificador de corto plazo</p>
+            </ul>
+            <p>Cambio de contexto</p>
+            <p>Se demuestra el context switch: </p>
+            <ul>
+                <li>Se guarda el estado del proceso actual en su PCB</li>
+                <li>Se restaura el estado del siguiente proceso desde su PCB</li>
+                <li>El siguiente proceso continúa su ejecución</li>
+            </ul>
+            <p>Uso del Quantum y colas</p>
+            <p>
+                Se visualiza el comportamiento del Quantum en Round Robin y la gestión de las colas de procesos listos, mostrando cómo el planificador decide el orden de ejecución.
+            </p>
+
+
+
+
+            <p>REFERENCIAS BIBLIOGRAFICAS</p>
+            <ul>
+                <li>Wikipedia — Bloque de Control de Proceso</li>
+                <li>AlgoMaster.io — El Bloque de Control de Proceso (2026)</li>
+                <li>Documentación del sistema operativo xv6 del MIT.</li>
+                <li>Materiales de clase de Sistemas Operativos de la Universidad de Massachusetts (CMPSCI 377).</li>
+                <li>Universidad de Cambridge — Lección 05: Algoritmos de Planificación.</li>
+                <li>Rutgers University — CS 416: Diseño de Sistemas Operativos.</li>
+                <li>Pemasinghe, S. & Rajapaksha, S. (2022) — comparación de algoritmos de planificación de CPU.</li>
+                <li>Hajjar, O. et al. (2024) — evaluación del rendimiento de algoritmos de planificación de CPU.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Sistemas Operativos | Administración de Procesos y Procesador</p>
+    </footer>
+
+</body>
+
+</html>
